@@ -1,0 +1,38 @@
+{% extends 'home.html'%}
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col col-8 offset-2">
+            <form method="post">{%csrf_token%}
+                <h1 class="text-center btn-primary">Registration</h1>
+                {{form.as_p}}
+                <input type="submit" value="submit"class='btn btn-primary'></input>
+            </form>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">PASSWORD</th>
+        <th scope="col">EDIT</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    {% for i in data %}
+    <tbody>
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.password}}</td>
+        <td><a href="update/{{i.id}}" value='edit' class='btn btn-outline-primary'>EDIT</a></td>
+        <td><a href="delete/{{i.id}}" value="delete" class="btn btn-outline-danger">DELETE</a></td>
+      </tr>
+      {% endfor%}
+  </table>
+{% endblock content%}
